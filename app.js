@@ -1,11 +1,15 @@
 const searchSongs = () => {
     const searchText = document.getElementById('search-field').value;
+    document.getElementById('search-field').value = ""; //inputBox khali korar jonno
     const url = `https://api.lyrics.ovh/suggest/${searchText}`
+    // toggleSpinner(true);
+    toggleSpinner();
     fetch(url)
     .then(res => res.json())
     .then(data => displaySongs(data.data))
     .catch(error => displayError("Somethong went wrong! Please try again later."))
 } 
+
 
 //************async er pattern */
 
@@ -16,6 +20,16 @@ const searchSongs = () => {
 //     const data = await res.json(); //ekhane data wait korbe res er jonno.....etai muloto callback
 //     displaySongs(data.data);
 // }
+
+    document.getElementById("search-field")
+        .addEventListener("keypress", function(event) {
+        if (event.key === "Enter"){
+            document.getElementById("searchBtn").click();
+        }
+    });
+
+
+
 
 const displaySongs = songs => {
     const songContainer = document.getElementById('song-container');
@@ -39,6 +53,8 @@ const displaySongs = songs => {
             </div>
         `;
         songContainer.appendChild(songDiv);
+        // toggleSpinner(false);
+        toggleSpinner();
     });
 }
 
@@ -69,4 +85,20 @@ const displayLyrics = lyrics => {
 const displayError = error => {
     const errorTag = document.getElementById("error-message");
     errorTag.innerHTML = error;
+}
+
+
+// const toggleSpinner = (show) => {
+//     const spinner = document.getElementById("loading-spinner");
+//     if(show){
+//         spinner.classList.remove("d-none")
+//     }else{
+//         spinner.classList.add("d-none")
+//     }
+// }
+const toggleSpinner = () => {
+    const spinner = document.getElementById("loading-spinner");
+    const songs = document.getElementById("song-container");
+        spinner.classList.toggle("d-none")
+        songs.classList.toggle("d-none")
 }

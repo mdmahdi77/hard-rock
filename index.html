@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- Custom css -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -47,7 +47,13 @@
                 <h1 class="text-center">Hard Rock Lyric Search</h1>
                 <div class="search-box my-5">
                     <input id="search-field" type="text" class="form-control" placeholder="Enter your artist song name">
-                    <button onclick="searchSongs()" class="btn btn-success search-btn">Search</button>
+                    <button id="searchBtn" onclick="searchSongs()" class="btn btn-success search-btn">Search</button>
+                </div>
+            </div>
+            <!-- spinner -->
+            <div id="loading-spinner" class="d-flex justify-content-center d-none">
+                <div class="spinner-border text-warning" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
             <!-- error message showing -->
